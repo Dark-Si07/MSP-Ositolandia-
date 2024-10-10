@@ -1,0 +1,45 @@
+:main
+a_name A Neoforge 1.21.1
+a_version 21.1.65
+a_author s1ngxl4rity
+a_add_type c_for
+a_add_version c_for neoforge https://maven.neoforged.net/releases/net/neoforged/neoforge/21.1.65/neoforge-21.1.65-installer.jar 21
+
+/////////////////////
+
+:section cancelar_sv
+nsay [❮❰] Volviendo al menú.
+sleep 3
+
+
+:button neoforge1.21.1
+text Instalar Neoforge 1.21.1 | 21.1.65
+nsay [⚠︎] Al instalar esta versión de NeoForge estás reinstalando tu servidor...
+input del [➥ ] Deseas continuar?〔S/N〕❱ 
+if "%del%" == "s" eliminar_servidor none
+if "%del%" == "n" cancelar_sv none
+
+
+:section eliminar_servidor
+remove_server
+nsay [✔ ] Servidor eliminado!
+sleep 3
+download_version y c_for neoforge
+nsay [🡻 ] Descargando e instalando NeoForge (Espera un momento)
+sleep 5
+exec java -jar neoforge.jar --installServer
+cls
+exec echo "eula=true" >> eula.txt
+
+nsay [🛠️ ] Configurando permisos de ejecución para run.sh...
+exec chmod +x run.sh
+
+config server_type neoforge
+config server_version 1.21.1
+config_save
+cls
+
+nsay [✔ ] NeoForge descargado e instalado!
+nsay [❯❱] Tu servidor ahora es: NeoForge 1.21.1 | 21.1.65
+nsay ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+pause

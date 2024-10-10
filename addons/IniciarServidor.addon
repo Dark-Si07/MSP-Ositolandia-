@@ -1,0 +1,26 @@
+:main
+a_name Iniciar Servidor Minecraft
+a_version 1.0
+a_author tu_nombre
+a_add_type c_for
+
+/////////////////////
+
+:section cancelar_sv
+nsay [❮❰] Volviendo al menú.
+sleep 3
+
+:button iniciar_sv
+text Iniciar Servidor de Minecraft
+nsay [⚠︎] Se va a iniciar el servidor de Minecraft...
+input del [➥ ] ¿Deseas continuar?〔S/N〕❱
+if "%del%" == "s" iniciar_server none
+if "%del%" == "n" cancelar_sv none
+
+:section iniciar_server
+nsay [⚙] Iniciando servidor...
+sleep 2
+# Comando para iniciar el servidor usando el run.sh
+exec ./run.sh
+nsay [✔] ¡Servidor iniciado exitosamente!
+pause
